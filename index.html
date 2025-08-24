@@ -1014,7 +1014,8 @@
             "📈火花KPI超额完成📈",
             "🪐跨次元火花协议签订🪐",
             "🌸火花续燃的速度是秒速五次元🌸",
-            "👽!@#$%^&*👽"
+            "👽!@#$%^&*👽",
+            "🐴喜欢马驾骑被你发现🐴"
         ];
         
         // 名言
@@ -1107,7 +1108,7 @@
         ];
         
         // 全局基准日期常量
-        const BASE_DATE = new Date(2025, 7, 24); // 月份以0起始
+        const BASE_DATE = new Date(2025, 7, 31); // 月份以0起始
 
         // 基于日期字符串的哈希函数
         function hashDate(dateStr) {
@@ -1197,6 +1198,18 @@
         function igniteSpark() {
             const now = new Date();
             const todayStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+
+            // 检查是否有未来的火花记录
+            const sparkDataFuture = JSON.parse(localStorage.getItem('sparkData')) || [];
+            const hasFutureSpark = sparkDataFuture.some(item => {
+                const sparkDate = new Date(item.date);
+                return sparkDate > now;
+            });
+
+            if (hasFutureSpark) {
+                alert('时间穿越是被禁止的！');
+                return false;
+            }
 
             // 如果今天已经点燃，直接返回
             if (hasSparkedToday()) {
