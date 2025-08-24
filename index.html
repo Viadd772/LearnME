@@ -147,24 +147,44 @@
             justify-content: center;
         }
 
+        .date-circles-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            overflow-x: hidden;
+        }
         .date-circles {
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 500px;
+            width: auto;
+            max-width: 100%;
+            overflow-x: auto;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        .date-circles::-webkit-scrollbar {
+            height: 6px;
+        }
+        .date-circles::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 3px;
+        }
+        .date-circles::-webkit-scrollbar-track {
+            background-color: transparent;
         }
 
         .date-circle {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
+            aspect-ratio: 1/1;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: white;
             margin: 0 5px;
+            flex-shrink: 0;
         }
 
         .circle-green {
