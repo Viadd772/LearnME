@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,24 @@
             box-sizing: border-box;
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
-        
+
         body {
             background-color: #f5f7fa;
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
+        /* 今日学习板块内部padding调整 */
+        .today-study-card .card-content {
+            padding: 20px 20px 0px;
+        }
+
+        /* LearnME板块内部padding调整 */
+        .learnme-card .card-content {
+            padding: 0px 20px 20px;
+        }
+
         .card {
             background-color: #fff;
             border-radius: 12px;
@@ -26,9 +37,9 @@
             margin-bottom: 20px;
             overflow: hidden;
         }
-        
+
         .card-header {
-            padding: 15px 20px;
+            padding: 15px 20px 0px;
             border-bottom: none;
             display: flex;
             flex-direction: column;
@@ -39,37 +50,38 @@
             background-color: rgb(255, 255, 255);
             color: rgb(0, 0, 0);
         }
-        
+
         .card-header #current-date {
             font-size: 14px;
             color: #696969;
             font-weight: normal;
             margin-top: 5px;
         }
-        
+
         .card-content {
-            padding: 20px;
+            padding: 0px 20px 15px;
             background-color: white;
             border-radius: 0 0 12px 12px;
+            text-align: center;
         }
-        
+
         .today-study {
             text-align: center;
             padding: 0px 0 20px;
         }
-        
+
         .study-title {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        
+
         .study-time {
             font-size: 16px;
             color: #666;
             margin-bottom: 20px;
         }
-        
+
         .preview-btn {
             display: inline-block;
             padding: 8px 16px;
@@ -80,39 +92,39 @@
             font-size: 14px;
             cursor: pointer;
         }
-        
+
         .preview-btn:hover {
             background-color: #e0e0e0;
         }
-        
+
         .week-plan {
             display: none;
             padding: 15px;
         }
-        
+
         .week-plan.active {
             display: block;
         }
-        
+
         .day-item {
             display: flex;
             padding: 10px 0;
             border-bottom: 1px solid #f0f0f0;
         }
-        
+
         .day-item:last-child {
             border-bottom: none;
         }
-        
+
         .day-name {
             width: 50px;
             font-weight: bold;
         }
-        
+
         .day-content {
             flex: 1;
         }
-        
+
         .today-highlight {
             background-color: #e8f5e9;
             border-radius: 5px;
@@ -153,6 +165,7 @@
             width: 100%;
             overflow-x: hidden;
         }
+
         .date-circles {
             display: flex;
             width: auto;
@@ -161,13 +174,16 @@
             padding: 10px 0;
             -webkit-overflow-scrolling: touch;
         }
+
         .date-circles::-webkit-scrollbar {
             height: 6px;
         }
+
         .date-circles::-webkit-scrollbar-thumb {
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0, 0, 0, 0.2);
             border-radius: 3px;
         }
+
         .date-circles::-webkit-scrollbar-track {
             background-color: transparent;
         }
@@ -195,18 +211,18 @@
         .circle-gray {
             background-color: gray;
         }
-        
+
         .more-btn {
             text-align: center;
             padding: 10px 0;
         }
-        
+
         .more-btn a {
             color: #1976d2;
             text-decoration: none;
             cursor: pointer;
         }
-        
+
         .modal {
             display: none;
             position: fixed;
@@ -219,7 +235,7 @@
             overflow-y: auto;
             overscroll-behavior: contain;
         }
-        
+
         .modal-content {
             background-color: #fff;
             margin: 10% auto;
@@ -230,7 +246,7 @@
             position: relative;
             box-sizing: border-box;
         }
-        
+
         .modal-header {
             position: sticky;
             top: 0;
@@ -249,7 +265,7 @@
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
         }
-        
+
         .modal-header h2 {
             margin: 0;
             font-size: 20px;
@@ -259,7 +275,7 @@
             text-align: center;
             position: relative;
         }
-        
+
         .close-btn {
             font-size: 24px;
             font-weight: bold;
@@ -270,14 +286,14 @@
             position: absolute;
             right: 20px;
         }
-        
+
         .plan-list {
             margin-top: 0;
             padding: 20px;
             width: 100%;
             box-sizing: border-box;
         }
-        
+
         .plan-item {
             padding: 15px;
             border-bottom: 1px solid #f0f0f0;
@@ -285,12 +301,12 @@
             flex-direction: column;
             gap: 8px;
         }
-        
+
         .plan-item .plan-date {
             font-size: 14px;
             color: #666;
         }
-        
+
         .plan-item .plan-title {
             font-size: 16px;
             font-weight: 500;
@@ -305,24 +321,24 @@
         html {
             scroll-behavior: smooth;
         }
-        
+
         .plan-item .plan-time {
             font-size: 14px;
             color: #666;
         }
-        
+
         /* 单词板块样式 */
         .word-card {
             background-color: #4caf50;
             color: white;
         }
-        
+
         .date-selector {
             display: flex;
             justify-content: center;
             margin-top: 15px;
         }
-        
+
         .date-item {
             width: 40px;
             height: 40px;
@@ -334,12 +350,12 @@
             background-color: #e0e0e0;
             cursor: pointer;
         }
-        
+
         .date-item.active {
             background-color: #4caf50;
             color: white;
         }
-        
+
         /* LearnME计划样式 */
         .progress-bar {
             height: 20px;
@@ -348,13 +364,13 @@
             margin-top: 15px;
             overflow: hidden;
         }
-        
+
         .progress-fill {
             height: 100%;
             background-color: #ff80ab;
             border-radius: 10px;
         }
-        
+
         .spark-btn {
             display: block;
             background-color: #ff80ab;
@@ -370,63 +386,63 @@
         .emoji-font {
             font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
         }
-        
+
         /* 新增样式 */
         .container {
             max-width: 500px;
             margin: 0 auto;
         }
-        
+
         .today-header {
             background-color: #f8f8f8;
             text-align: center;
             padding: 10px;
         }
-        
+
         .today-date {
             font-size: 14px;
             color: #666;
         }
-        
+
         .today-course {
             font-size: 18px;
             font-weight: bold;
             margin: 10px 0 5px;
         }
-        
+
         .today-time {
             font-size: 14px;
             color: #666;
         }
-        
+
         .week-day {
             padding: 8px;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
         }
-        
+
         .week-day.today {
             background-color: #e8f5e9;
         }
-        
+
         .week-day.weekend {
             background-color: #fce4ec;
         }
-        
+
         .today-preview {
             margin-top: 10px;
             padding: 10px;
             background-color: #f5f5f5;
             border-radius: 8px;
         }
-        
+
         .today-preview .today-line {
             display: flex;
             align-items: center;
             margin-bottom: 8px;
         }
-        
+
         .today-preview .today-line .today-tag {
             background-color: #4CAF50;
             color: white;
@@ -435,40 +451,43 @@
             margin-right: 10px;
             font-size: 14px;
         }
-        
+
         .weekday {
             color: #666;
             margin-left: 8px;
         }
-        
+
         .weekday.weekend {
             background-color: #fce4ec;
         }
-        
+
         .day-course {
             flex: 1;
             padding: 0 10px;
         }
-        
+
         .day-time {
             color: #666;
             font-size: 12px;
             width: 100px;
             text-align: right;
         }
-        
+
         .saying {
             font-style: italic;
             text-align: center;
             margin: 15px 0;
-            color: #888; /* 更浅的灰色 */
-            font-size: 14px; /* 更小的字号 */
+            color: #888;
+            /* 更浅的灰色 */
+            font-size: 14px;
+            /* 更小的字号 */
         }
     </style>
 </head>
+
 <body>
     <!-- 今日学习卡片 -->
-    <div class="card">
+    <div class="card today-study-card">
         <div class="card-header">
             今日学习
             <span id="current-date"></span>
@@ -477,18 +496,18 @@
             <div class="today-study">
                 <div class="study-title" id="study-title"></div>
                 <div class="study-time" id="study-time"></div>
-                <div class="preview-btn" id="toggle-preview">计划预览</div>
+                <div class="preview-btn no-highlight" id="toggle-preview">计划预览</div>
             </div>
-            
+
             <div class="week-plan" id="week-plan">
                 <div id="week-plan-content"></div>
-                <div class="more-btn">
-                    <a id="show-all-plans">更多</a>
+                <div class="more-btn no-highlight">
+                    <a id="show-all-plans" class="no-highlight">更多</a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- 单词板块卡片 -->
     <div class="vocab-section">
         <div class="vocab-header" id="vocab-header">
@@ -498,15 +517,15 @@
             <div class="date-circles" id="date-circles"></div>
         </div>
     </div>
-    
+
     <!-- LearnME计划卡片 -->
-    <div class="card">
+    <div class="card learnme-card">
         <div class="card-header">
-            LearnME计划
+            LearnME
+            <span id="encourage-message">别放弃，伟大的事情都需要时间</span>
         </div>
         <div class="card-content">
-            <div id="encourage-message">别放弃，伟大的事情都需要时间</div>
-            
+
             <div id="spark-status-container" style="margin: 15px 0;">
                 <div id="spark-days-container">
                     火花已点燃 <span id="spark-days" style="color: #ff80ab; font-size: 28px;">0</span> 天
@@ -515,14 +534,15 @@
                     💀火花熄灭了💀
                 </div>
             </div>
-            
-            <a href="#" class="spark-btn" id="spark-button">点燃火花</a>
-            
+
+            <a href="#" class="spark-btn no-highlight" id="spark-button">点燃火花</a>
+
             <div style="margin: 15px 0;">
-                <div id="next-report" style="margin-bottom: 10px;">离下次报告还有 <span class="highlight" style="color: #ff80ab; font-size: 24px;">4</span> 天</div>
+                <div id="next-report" style="margin-bottom: 10px;">离下次报告还有 <span class="highlight"
+                        style="color: #ff80ab; font-size: 24px;">4</span> 天</div>
                 <div>你已经坚持了 <span id="persist-days" style="color: #ff80ab; font-size: 24px;">23</span> 天</div>
             </div>
-            
+
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar">
                     <div class="progress-fill" style="width: 0%;"></div>
@@ -531,7 +551,7 @@
             </div>
         </div>
     </div>
-    
+
     <style>
         .highlight {
             color: #ff80ab;
@@ -540,71 +560,82 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        
+
         .progress-container {
             width: 100%;
             margin-top: 15px;
             position: relative;
             padding-bottom: 20px;
         }
-        
+
         .progress-bar {
             height: 10px;
             background-color: #e0e0e0;
             border-radius: 5px;
             overflow: hidden;
         }
-        
+
         .progress-fill {
             height: 100%;
             background-color: #ff80ab;
             transition: width 0.3s;
         }
-        
+
         #progress-text {
             position: absolute;
             margin-top: 5px;
             font-size: 12px;
             color: #333;
         }
-        
+
         /* 居中样式 */
-        #encourage-message {
-            text-align: center;
+        .card-header #encourage-message {
             font-style: italic;
-            color: #888; /* 浅灰色 */
-            font-size: 14px; /* 小字号 */
-        }
-        
-        .card-content > div:nth-child(2) {
+            color: #696969;
+            /* 与current-date相同的颜色 */
+            font-size: 12px;
+            font-weight: normal;
+            margin-top: 5px;
+            /* 与current-date相同的上边距 */
+            display: block;
             text-align: center;
         }
-        
+
+        .card-content>div:nth-child(2) {
+            text-align: center;
+        }
+
         #spark-days {
             font-weight: bold;
         }
-        
-        .card-content > div:nth-child(4) {
+
+        .card-content>div:nth-child(4) {
             text-align: center;
         }
-        
+
         #persist-days {
             font-weight: bold;
         }
-        
+
+        .no-highlight {
+            -webkit-tap-highlight-color: transparent;
+            tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
         .spark-btn {
             display: block;
             margin: 10px auto;
             text-align: center;
         }
     </style>
-    
+
     <!-- 全部计划弹窗 -->
     <div class="modal" id="all-plans-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>全部学习计划</h2>
-                <span class="close-btn" id="close-modal">&times;</span>
+                <span class="close-btn no-highlight" id="close-modal">&times;</span>
             </div>
             <div class="plan-list" id="all-plans-list"></div>
         </div>
@@ -954,7 +985,7 @@
             ['【成对数据统计】【一数辞典】3独立性检验', '00:00 - 10:21'],
             ['【成对数据统计】【一数辞典】3独立性检验', '10:21 - 20:42']
         ];
-        
+
         // 鼓励语
         const encourageMessages = [
             "🎉恭喜🎉",
@@ -1015,9 +1046,32 @@
             "🪐跨次元火花协议签订🪐",
             "🌸火花续燃的速度是秒速五次元🌸",
             "👽!@#$%^&*👽",
-            "🐴喜欢马驾骑被你发现🐴"
+            "🐴喜欢马驾骑被你发现🐴",
+            "🤔嗯，用户点燃了火花…🤔",
+            "🥤咕咚…咕咚…嗝～🥤",
+            "🐧你要充Q币嘛🐧",
+            "🔥爱如火，它温暖了心窝🔥",
+            "😾哈！😾",
+            "🐤叮咚鸡，大狗叫🐤",
+            "🤪如何呢，又能怎？🤪",
+            "8️⃣满分10分我给你打8.6分，因为我有1.4了6️⃣",
+            "🍰啊啊啊，宝宝你是一个香香软软的小蛋糕🍰",
+            "🐈oiiaiaoiiiai🐈",
+            "😥不要…忘记…点…火花…😥",
+            "🧠9.9包邮爱因斯坦的大脑🧠",
+            "🛫芜湖～起飞🛫",
+            "🏓教练对我说～🏓",
+            "📗不要忘记每天复习单词📗",
+            "☕给你倒一杯卡布奇诺☕",
+            "🍻Cheers🍻",
+            "🦶留下足迹🦶",
+            "🌹送你999朵玫瑰🌹",
+            "🐆知识学爆🐆",
+            "🧀完蛋！我被知识包围了！🧀",
+            "☀接下来，要开始放晴了哦☀",
+
         ];
-        
+
         // 名言
         const sayings = [
             "相信自己，你能做到！",
@@ -1106,7 +1160,7 @@
             "每一步，都在靠近梦想！",
             "你本身，就是无限可能"
         ];
-        
+
         // 全局基准日期常量
         const BASE_DATE = new Date(2025, 7, 31); // 月份以0起始
 
@@ -1121,7 +1175,7 @@
             }
             return Math.abs(hash);
         }
-        
+
         // 从sayings中根据日期随机抽取一句话
         function getDailySaying() {
             const now = new Date();
@@ -1130,7 +1184,7 @@
             const index = hash % sayings.length;
             return sayings[index];
         }
-        
+
         // 获取火花已点燃的天数
         function getSparkDays() {
             // 从本地存储获取火花数据
@@ -1148,7 +1202,7 @@
 
             const now = new Date();
             const todayStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-            
+
             // 计算昨天的日期
             const yesterday = new Date(now);
             yesterday.setDate(now.getDate() - 1);
@@ -1237,35 +1291,35 @@
                     return false;
                 }
 
-            // 如果今天已经点燃，直接返回
-            if (hasSparkedToday()) {
-                return false;
+                // 如果今天已经点燃，直接返回
+                if (hasSparkedToday()) {
+                    return false;
+                }
+
+                // 基于日期哈希选择鼓励消息，确保同一天在不同设备上结果一致
+                const dateStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+                const hash = hashDate(dateStr);
+                const index = hash % encourageMessages.length;
+                const randomEncourage = encourageMessages[index];
+                // 使用正则表达式提取第一个emoji
+                const emojiMatch = randomEncourage.match(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{0023}-\u{0026}\u{0030}-\u{0039}\u{2000}-\u{303F}\u{FE00}-\u{FE0F}\u{1F1E6}-\u{1F1FF}]/gu);
+                const emoji = emojiMatch ? emojiMatch[0] : '🔥'; // 如果没有找到emoji，使用默认火焰图标
+
+                // 保存到本地存储
+                const sparkData = JSON.parse(localStorage.getItem('sparkData')) || [];
+                sparkData.push({
+                    date: todayStr,
+                    message: randomEncourage,
+                    emoji: emoji
+                });
+                localStorage.setItem('sparkData', JSON.stringify(sparkData));
+
+                return true;
+            } catch (error) {
+                console.error('点燃火花时出错:', error);
+                throw error;
             }
-
-            // 基于日期哈希选择鼓励消息，确保同一天在不同设备上结果一致
-            const dateStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-            const hash = hashDate(dateStr);
-            const index = hash % encourageMessages.length;
-            const randomEncourage = encourageMessages[index];
-            // 使用正则表达式提取第一个emoji
-            const emojiMatch = randomEncourage.match(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{0023}-\u{0026}\u{0030}-\u{0039}\u{2000}-\u{303F}\u{FE00}-\u{FE0F}\u{1F1E6}-\u{1F1FF}]/gu);
-            const emoji = emojiMatch ? emojiMatch[0] : '🔥'; // 如果没有找到emoji，使用默认火焰图标
-
-            // 保存到本地存储
-            const sparkData = JSON.parse(localStorage.getItem('sparkData')) || [];
-            sparkData.push({
-                date: todayStr,
-                message: randomEncourage,
-                emoji: emoji
-            });
-            localStorage.setItem('sparkData', JSON.stringify(sparkData));
-
-            return true;
-        } catch (error) {
-            console.error('点燃火花时出错:', error);
-            throw error;
         }
-    }
 
         // 更新火花状态显示
         function updateSparkStatus() {
@@ -1273,7 +1327,7 @@
             const sparkDaysContainer = document.getElementById('spark-days-container');
             const sparkExtinguished = document.getElementById('spark-extinguished');
             const sparkDaysElement = document.getElementById('spark-days');
-            
+
             // 根据连续天数显示不同内容
             if (consecutiveDays === 0) {
                 sparkDaysContainer.style.display = 'none';
@@ -1297,13 +1351,13 @@
                 }
             }
         }
-        
+
         // 计算离下次报告的天数（下一个周六）
         function getDaysUntilNextReport() {
             const now = new Date();
             const currentDay = now.getDay(); // 0是周日，6是周六
             let daysUntilSaturday;
-            
+
             if (currentDay === 6) {
                 // 今天是周六
                 return 0;
@@ -1313,7 +1367,7 @@
                 return daysUntilSaturday;
             }
         }
-        
+
         // 初始化LearnME板块
         function initLearnME() {
             // 获取第一行：每日名言
@@ -1331,13 +1385,13 @@
             } else {
                 reportElement.innerHTML = `离下次报告还有<span class="highlight">${daysUntilReport}</span>天`;
             }
-            
+
             // 第五行：坚持的天数
             const persistDays = getDayDifference() + 1;
             document.getElementById('persist-days').textContent = persistDays;
-            
+
             // 进度条：计算百分比
-            const progressPercent = (persistDays / 340) * 100;
+            const progressPercent = (persistDays / studyPlans.length) * 100;
             const progressBar = document.getElementById('progress-bar');
             const progressFill = progressBar.querySelector('.progress-fill');
             const progressText = document.getElementById('progress-text');
@@ -1357,7 +1411,7 @@
             // 设置文本位置
             let textPosition;
             const threshold = textWidth / 2; // 阈值，用于判断是否靠近边界
-            
+
             // 当进度位置小于阈值时，左对齐（与进度条左边界对齐）
             if (progressPosition < threshold) {
                 textPosition = 0;
@@ -1370,10 +1424,10 @@
             else {
                 textPosition = progressPosition - textWidth / 2;
             }
-            
+
             progressText.style.left = `${textPosition}px`;
         }
-        
+
         // 获取当前日期
         function getCurrentDate() {
             const now = new Date();
@@ -1382,42 +1436,42 @@
             const date = now.getDate();
             const day = now.getDay();
             const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-            
+
             return `${year}年${month}月${date}日 星期${weekdays[day]}`;
         }
-        
+
         // 计算与基准日期的差值
         function getDayDifference() {
             const baseDate = BASE_DATE; // 使用全局基准日期常量
             const now = new Date();
-            
+
             // 设置时间为0点，只比较日期
             baseDate.setHours(0, 0, 0, 0);
             now.setHours(0, 0, 0, 0);
-            
+
             const diffTime = now - baseDate;
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            
+
             return diffDays;
         }
-        
+
         // 获取今日学习计划
         function getTodayStudyPlan() {
             const dayDiff = getDayDifference();
             const planIndex = dayDiff >= 0 ? dayDiff % studyPlans.length : (studyPlans.length + dayDiff % studyPlans.length) % studyPlans.length;
-            
+
             return studyPlans[planIndex];
         }
-        
+
         // 获取本周学习计划
         function getWeekStudyPlans() {
             const now = new Date();
             const currentDay = now.getDay(); // 0是周日，1是周一，以此类推
             const dayDiff = getDayDifference();
-            
+
             // 计算本周周日的索引
             const sundayIndex = dayDiff - currentDay;
-            
+
             const weekPlans = [];
             for (let i = 0; i < 7; i++) {
                 const planIndex = (sundayIndex + i) % studyPlans.length;
@@ -1427,70 +1481,70 @@
                     plan: studyPlans[adjustedIndex]
                 });
             }
-            
+
             return weekPlans;
         }
-        
+
         // 初始化页面
         function initPage() {
             // 设置当前日期
             document.getElementById('current-date').textContent = getCurrentDate();
-            
+
             // 设置今日学习内容
             const todayPlan = getTodayStudyPlan();
             document.getElementById('study-title').textContent = todayPlan[0];
             document.getElementById('study-time').textContent = todayPlan[1];
-            
+
             // 设置本周计划
             const weekPlans = getWeekStudyPlans();
             const weekdayNames = ['&nbsp;周日', '&nbsp;周一', '&nbsp;周二', '&nbsp;周三', '&nbsp;周四', '&nbsp;周五', '&nbsp;周六'];
 
             const weekPlanContent = document.getElementById('week-plan-content');
-            
+
             weekPlans.forEach((item, index) => {
                 const dayItem = document.createElement('div');
                 dayItem.className = 'day-item';
-                
+
                 // 为今天添加高亮类
                 if (index === new Date().getDay()) {
                     dayItem.className += ' today-highlight';
                 }
-                
+
                 // 统一所有日期的HTML结构
                 const dayName = index === new Date().getDay() ? '&nbsp;今天' : weekdayNames[index];
                 dayItem.innerHTML = `<div class="day-name">${dayName}</div>`;
-                
+
                 dayItem.innerHTML += `
                     <div class="day-content">
                         ${item.plan[0]}
                         <div style="color: #666; font-size: 14px;">${item.plan[1]}</div>
                     </div>
                 `;
-                
+
                 weekPlanContent.appendChild(dayItem);
             });
-            
+
             // 设置全部计划列表
             const allPlansList = document.getElementById('all-plans-list');
             studyPlans.forEach((plan, index) => {
                 const planItem = document.createElement('div');
                 planItem.className = 'plan-item';
-                
+
                 // 计算日期
                 const baseDate = BASE_DATE; // 使用全局基准日期常量
                 const planDate = new Date(baseDate);
                 planDate.setDate(baseDate.getDate() + index);
                 const dateStr = `${planDate.getFullYear()}年${planDate.getMonth() + 1}月${planDate.getDate()}日 (Day ${index + 1})`;
-                
+
                 planItem.innerHTML = `
                     <div class="plan-date">${dateStr}</div>
                     <div class="plan-title">${plan[0]}</div>
                     <div class="plan-time">${plan[1]}</div>
                 `;
-                
+
                 allPlansList.appendChild(planItem);
             });
-            
+
             // 设置鼓励消息
             const randomEncourage = encourageMessages[Math.floor(Math.random() * encourageMessages.length)];
             document.getElementById('encourage-message').textContent = randomEncourage;
@@ -1548,34 +1602,66 @@
                 dateCircles.appendChild(circle);
             }
         }
-        
+
+        // 检查是否需要强制刷新页面
+        function checkForceRefresh() {
+            const now = new Date();
+            const todayStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+            const lastVisitDate = localStorage.getItem('lastVisitDate') || '';
+            const lastRefreshTime = localStorage.getItem('lastRefreshTime') || 0;
+            const nowTime = now.getTime();
+
+            // 如果上次访问日期不存在、与今天不同，或者已经过了5分钟，则强制刷新
+            if (!lastVisitDate || lastVisitDate !== todayStr || (nowTime - lastRefreshTime) > 300000) {
+                // 存储今天的日期和刷新时间
+                localStorage.setItem('lastVisitDate', todayStr);
+                localStorage.setItem('lastRefreshTime', nowTime.toString());
+                // 强制刷新页面
+                location.reload();
+            }
+        }
+
+        // 监听页面可见性变化
+        function setupVisibilityListener() {
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible') {
+                    checkForceRefresh();
+                }
+            });
+        }
+
         // 事件监听
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            // 首先检查是否需要强制刷新
+            checkForceRefresh();
+            // 设置页面可见性变化监听
+            setupVisibilityListener();
+
             initPage();
             initVocabSection();
             initLearnME();
-            
+
             // 计划预览按钮
-            document.getElementById('toggle-preview').addEventListener('click', function() {
+            document.getElementById('toggle-preview').addEventListener('click', function () {
                 const weekPlan = document.getElementById('week-plan');
                 weekPlan.classList.toggle('active');
                 this.textContent = weekPlan.classList.contains('active') ? '收起预览' : '计划预览';
             });
-            
+
             // 显示全部计划
-            document.getElementById('show-all-plans').addEventListener('click', function() {
+            document.getElementById('show-all-plans').addEventListener('click', function () {
                 const modal = document.getElementById('all-plans-modal');
                 modal.style.display = 'block';
-                
+
                 // 禁止背景页面滚动
                 document.body.style.overflow = 'hidden';
-                
+
                 // 高亮并定位到今天的计划
                 highlightTodayPlan();
             });
-            
+
             // 点燃火花按钮点击事件
-            document.getElementById('spark-button').addEventListener('click', async function() {
+            document.getElementById('spark-button').addEventListener('click', async function () {
                 if (hasSparkedToday()) {
                     // 今天已经点燃，显示火花日历弹窗
                     showSparkCalendar();
@@ -1598,21 +1684,31 @@
 
             // 显示火花日历弹窗
             function showSparkCalendar() {
+                // 记录当前滚动位置
+                const scrollY = window.scrollY;
+
                 // 创建弹窗元素
                 const modal = document.createElement('div');
                 modal.className = 'calendar-modal';
                 modal.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 1000;
-                `;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 1000;
+                        overflow-y: auto;
+                    `;
+
+                // 禁止背景页面滚动
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+                document.body.style.top = `-${scrollY}px`;
 
                 // 创建弹窗内容
                 const modalContent = document.createElement('div');
@@ -1636,11 +1732,31 @@
                 monthSelector.style.cssText = 'display: flex; justify-content: space-between; margin: 15px 0;';
 
                 const prevBtn = document.createElement('button');
-                prevBtn.textContent = '<<';
+                prevBtn.innerHTML = '&#9664;'; // 左箭头符号
+                prevBtn.className = 'no-highlight calendar-nav-btn';
+                prevBtn.style.cssText = `
+                    padding: 3px 6px;
+                    background-color: #f0f0f0;
+                    color: #888;
+                    border: none;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    font-size: 10px;
+                `;
                 prevBtn.onclick = () => renderCalendar(currentMonth - 1);
 
                 const nextBtn = document.createElement('button');
-                nextBtn.textContent = '>>';
+                nextBtn.innerHTML = '&#9654;'; // 右箭头符号
+                nextBtn.className = 'no-highlight calendar-nav-btn';
+                nextBtn.style.cssText = `
+                    padding: 3px 6px;
+                    background-color: #f0f0f0;
+                    color: #888;
+                    border: none;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    font-size: 10px;
+                `;
                 nextBtn.onclick = () => renderCalendar(currentMonth + 1);
 
                 const monthDisplay = document.createElement('span');
@@ -1688,6 +1804,7 @@
                 // 添加加载按钮
                 const loadBtn = document.createElement('button');
                 loadBtn.textContent = '加载';
+                loadBtn.className = 'no-highlight';
                 loadBtn.style.cssText = `
                     padding: 8px 15px;
                     background-color: #2196F3;
@@ -1696,13 +1813,14 @@
                     border-radius: 4px;
                     cursor: pointer;
                 `;
-                loadBtn.onclick = loadData;
+                loadBtn.onclick = showLoadOptions;
                 btnContainer.appendChild(loadBtn);
 
-                // 添加下载按钮
-                const downloadBtn = document.createElement('button');
-                downloadBtn.textContent = '下载';
-                downloadBtn.style.cssText = `
+                // 添加保存按钮
+                const saveBtn = document.createElement('button');
+                saveBtn.textContent = '保存';
+                saveBtn.className = 'no-highlight';
+                saveBtn.style.cssText = `
                     padding: 8px 15px;
                     background-color: #4CAF50;
                     color: white;
@@ -1710,12 +1828,13 @@
                     border-radius: 4px;
                     cursor: pointer;
                 `;
-                downloadBtn.onclick = downloadData;
-                btnContainer.appendChild(downloadBtn);
+                saveBtn.onclick = showSaveOptions;
+                btnContainer.appendChild(saveBtn);
 
                 // 添加关闭按钮
                 const closeBtn = document.createElement('button');
                 closeBtn.textContent = '关闭';
+                closeBtn.className = 'no-highlight';
                 closeBtn.style.cssText = `
                     padding: 8px 15px;
                     background-color: #f44336;
@@ -1724,20 +1843,408 @@
                     border-radius: 4px;
                     cursor: pointer;
                 `;
-                closeBtn.onclick = () => document.body.removeChild(modal);
+                closeBtn.onclick = () => {
+                    // 恢复滚动位置
+                    const scrollY = parseInt(document.body.style.top || '0');
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.width = '';
+                    document.body.style.top = '';
+                    window.scrollTo({ top: -scrollY, behavior: "instant" });
+
+                    // 移除模态框
+                    document.body.removeChild(modal);
+                };
                 btnContainer.appendChild(closeBtn);
+
+                // 显示保存选项菜单
+                function showSaveOptions() {
+                    // 创建选项菜单
+                    const optionsMenu = document.createElement('div');
+                    optionsMenu.className = 'save-options-menu';
+                    optionsMenu.style.cssText = `
+                        position: absolute;
+                        background-color: white;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        padding: 10px;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        z-index: 1010;
+                    `;
+
+                    // 计算位置（在保存按钮下方）
+                    const rect = saveBtn.getBoundingClientRect();
+                    const modalRect = modal.getBoundingClientRect();
+                    optionsMenu.style.top = (rect.bottom - modalRect.top + 10) + 'px';
+                    optionsMenu.style.left = (rect.left - modalRect.left) + 'px';
+
+                    // 添加保存到文件选项
+                    const saveToFileBtn = document.createElement('button');
+                    saveToFileBtn.textContent = '保存到文件';
+                    saveToFileBtn.style.cssText = `
+                        display: block;
+                        padding: 8px 12px;
+                        text-align: left;
+                        background-color: #f9f9f9;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        margin-bottom: 5px;
+                        cursor: pointer;
+                    `;
+                    saveToFileBtn.onclick = function () {
+                        downloadData();
+                        modalContent.removeChild(optionsMenu);
+                    };
+                    optionsMenu.appendChild(saveToFileBtn);
+
+                    // 添加保存到剪贴板选项
+                    const saveToClipboardBtn = document.createElement('button');
+                    saveToClipboardBtn.textContent = '复制为文本';
+                    saveToClipboardBtn.style.cssText = `
+                        display: block;
+                        padding: 8px 12px;
+                        text-align: left;
+                        background-color: #f9f9f9;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    `;
+                    saveToClipboardBtn.onclick = function () {
+                        copyDataToClipboard();
+                        modalContent.removeChild(optionsMenu);
+                    };
+                    optionsMenu.appendChild(saveToClipboardBtn);
+
+                    // 添加到模态框内容
+                    modalContent.appendChild(optionsMenu);
+
+                    // 点击其他地方关闭菜单
+                    const closeMenu = function (event) {
+                        if (!optionsMenu.contains(event.target) && event.target !== saveBtn) {
+                            // 检查optionsMenu是否仍然是modalContent的子节点
+                            if (optionsMenu.parentNode === modalContent) {
+                                modalContent.removeChild(optionsMenu);
+                            }
+                            document.removeEventListener('click', closeMenu);
+                        }
+                    };
+                    document.addEventListener('click', closeMenu);
+                }
+
+                // 显示加载选项菜单
+                function showLoadOptions() {
+                    // 创建选项菜单
+                    const optionsMenu = document.createElement('div');
+                    optionsMenu.className = 'load-options-menu';
+                    optionsMenu.style.cssText = `
+                        position: absolute;
+                        background-color: white;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        padding: 10px;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        z-index: 1010;
+                        white-space: nowrap;
+                    `;
+
+                    // 计算位置（在加载按钮下方）
+                    const rect = loadBtn.getBoundingClientRect();
+                    const modalRect = modal.getBoundingClientRect();
+                    optionsMenu.style.top = (rect.bottom - modalRect.top + 10) + 'px';
+                    optionsMenu.style.left = (rect.left - modalRect.left) + 'px';
+
+                    // 添加从文件加载选项
+                    const loadFromFileBtn = document.createElement('button');
+                    loadFromFileBtn.textContent = '从文件加载';
+                    loadFromFileBtn.style.cssText = `
+                        display: block;
+                        width: 100%;
+                        padding: 8px;
+                        text-align: left;
+                        background-color: #f9f9f9;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        margin-bottom: 5px;
+                        cursor: pointer;
+                    `;
+                    loadFromFileBtn.onclick = function () {
+                        loadDataFromFile();
+                        modalContent.removeChild(optionsMenu);
+                    };
+                    optionsMenu.appendChild(loadFromFileBtn);
+
+                    // 添加从文本加载选项
+                    const loadFromTextBtn = document.createElement('button');
+                    loadFromTextBtn.textContent = '从文本加载';
+                    loadFromTextBtn.style.cssText = `
+                        display: block;
+                        width: 100%;
+                        padding: 8px;
+                        text-align: left;
+                        background-color: #f9f9f9;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    `;
+                    loadFromTextBtn.onclick = function () {
+                        modalContent.removeChild(optionsMenu);
+                        showTextInputDialog();
+                    };
+                    optionsMenu.appendChild(loadFromTextBtn);
+
+                    // 添加到模态框内容
+                    modalContent.appendChild(optionsMenu);
+
+                    // 点击其他地方关闭菜单
+                    const closeMenu = function (event) {
+                        if (!optionsMenu.contains(event.target) && event.target !== loadBtn) {
+                            // 检查optionsMenu是否仍然是modalContent的子节点
+                            if (optionsMenu.parentNode === modalContent) {
+                                modalContent.removeChild(optionsMenu);
+                            }
+                            document.removeEventListener('click', closeMenu);
+                        }
+                    };
+                    document.addEventListener('click', closeMenu);
+                }
+
+                // 从文件加载数据（原loadData函数重命名）
+                function loadDataFromFile() {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = '.json';
+                    input.onchange = function (e) {
+                        const file = e.target.files[0];
+                        if (!file) return;
+
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            try {
+                                const content = event.target.result;
+                                processImportedData(content);
+                            } catch (error) {
+                                console.error('数据加载失败:', error);
+                                alert('数据加载失败！');
+                            }
+                        };
+                        reader.readAsText(file);
+                    };
+                    input.click();
+                }
+
+                // 显示文本输入对话框
+                function showTextInputDialog() {
+                    // 创建对话框
+                    const textDialog = document.createElement('div');
+                    textDialog.className = 'text-input-dialog';
+                    textDialog.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: white;
+                        border: 1px solid #ddd;
+                        border-radius: 10px;
+                        padding: 20px;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                        z-index: 1020;
+                        width: 300px;
+                    `;
+
+                    // 添加标题
+                    const dialogTitle = document.createElement('h4');
+                    dialogTitle.textContent = '粘贴数据';
+                    dialogTitle.style.marginTop = '0';
+                    dialogTitle.style.textAlign = 'center';
+                    textDialog.appendChild(dialogTitle);
+
+                    // 添加文本区域
+                    const textarea = document.createElement('textarea');
+                    textarea.style.cssText = `
+                        width: 100%;
+                        height: 150px;
+                        margin: 10px 0;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        resize: none;
+                    `;
+                    textarea.placeholder = '请粘贴你从别处保存的数据...';
+                    textDialog.appendChild(textarea);
+
+                    // 添加按钮容器
+                    const dialogBtnContainer = document.createElement('div');
+                    dialogBtnContainer.style.cssText = `
+                        display: flex;
+                        justify-content: center;
+                        gap: 10px;
+                    `;
+                    textDialog.appendChild(dialogBtnContainer);
+
+                    // 添加确定按钮
+                    const confirmBtn = document.createElement('button');
+                    confirmBtn.textContent = '确定';
+                    confirmBtn.style.cssText = `
+                        padding: 8px 15px;
+                        background-color: #4CAF50;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    `;
+                    confirmBtn.onclick = function () {
+                        try {
+                            const content = textarea.value.trim();
+                            if (!content) {
+                                throw new Error('请输入数据');
+                            }
+                            processImportedData(content);
+                            modalContent.removeChild(textDialog);
+                        } catch (error) {
+                            console.error('数据加载失败:', error);
+                            alert('数据加载失败！');
+                        }
+                    };
+                    dialogBtnContainer.appendChild(confirmBtn);
+
+                    // 添加取消按钮
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.textContent = '取消';
+                    cancelBtn.style.cssText = `
+                        padding: 8px 15px;
+                        background-color: #f44336;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    `;
+                    cancelBtn.onclick = function () {
+                        modalContent.removeChild(textDialog);
+                    };
+                    dialogBtnContainer.appendChild(cancelBtn);
+
+                    // 添加到模态框内容
+                    modalContent.appendChild(textDialog);
+                }
+
+                // 处理导入的数据（抽取公共逻辑）
+                function processImportedData(content) {
+                    const importedData = JSON.parse(content);
+
+                    // 验证格式
+                    if (!importedData.sparkData || typeof importedData.hash !== 'string') {
+                        throw new Error('数据格式不正确');
+                    }
+
+                    // 提取数据并计算哈希
+                    const { hash, ...dataWithoutHash } = importedData;
+                    const dataStr = JSON.stringify(dataWithoutHash);
+                    const computedHash = customHash(dataStr);
+
+                    // 验证哈希
+                    if (computedHash !== hash) {
+                        alert('校验失败，请检查数据是否更改或损坏');
+                        return;
+                    }
+
+                    // 获取本地现有数据
+                    const localSparkData = JSON.parse(localStorage.getItem('sparkData') || '[]');
+
+                    // 创建一个以日期为键的映射，优先保留本地数据
+                    const sparkDataMap = new Map();
+
+                    // 先添加本地数据
+                    localSparkData.forEach(item => {
+                        sparkDataMap.set(item.date, item);
+                    });
+
+                    // 再添加导入数据中本地没有的日期，只保留date和emoji字段
+                    importedData.sparkData.forEach(item => {
+                        if (!sparkDataMap.has(item.date)) {
+                            sparkDataMap.set(item.date, {
+                                date: item.date,
+                                emoji: item.emoji || '🔥', // 如果没有emoji，使用默认值
+                                message: '' // 保留空message字段以避免可能的错误
+                            });
+                        }
+                    });
+
+                    // 转换回数组并保存
+                    const mergedSparkData = Array.from(sparkDataMap.values());
+                    localStorage.setItem('sparkData', JSON.stringify(mergedSparkData));
+
+                    alert('数据加载成功！');
+                    renderCalendar(currentMonth); // 重新渲染日历
+                    updateSparkStatus(); // 更新火花状态
+                }
 
                 // 实现独特哈希函数
                 function customHash(str) {
-                    let hash = 0;
-                    if (str.length === 0) return hash;
+                    // 高安全性哈希算法，避免前导零
+                    // 使用多个素数作为初始值
+                    let h1 = 0x67452301;
+                    let h2 = 0xEFCDAB89;
+                    let h3 = 0x98BADCFE;
+                    let h4 = 0x10325476;
+
+                    if (str.length === 0) {
+                        // 空字符串返回固定哈希值
+                        return '5d24b7a76b4b451f81b869cd733910ab';
+                    }
+
+                    // 处理输入字符串
                     for (let i = 0; i < str.length; i++) {
                         const char = str.charCodeAt(i);
-                        hash = ((hash << 5) - hash) + char;
-                        hash = hash & hash; // 转换为32位整数
+
+                        // 四轮不同的哈希计算
+                        h1 = ((h1 << 5) | (h1 >>> 27)) + h2 + char;
+                        h2 = ((h2 << 5) | (h2 >>> 27)) + h3 + char * 3;
+                        h3 = ((h3 << 5) | (h3 >>> 27)) + h4 + char * 7;
+                        h4 = ((h4 << 5) | (h4 >>> 27)) + h1 + char * 13;
+
+                        // 使用大素数进行混合
+                        h1 = h1 * 16777619 ^ h2;
+                        h2 = h2 * 1099511628211 ^ h3;
+                        h3 = h3 * 2684354561 ^ h4;
+                        h4 = h4 * 65537 ^ h1;
                     }
-                    return Math.abs(hash).toString(16);
+
+                    // 合并四个哈希值
+                    let hash = h1 ^ h2 ^ h3 ^ h4;
+                    hash = hash & 0xFFFFFFFF; // 确保是32位整数
+
+                    // 转换为十六进制
+                    let hashHex = Math.abs(hash).toString(16);
+
+                    // 确保长度为32位
+                    if (hashHex.length < 32) {
+                        // 使用基于哈希值的确定性填充，而非随机
+                        const padding = generateDeterministicPadding(hash, 32 - hashHex.length);
+                        hashHex = padding + hashHex;
+                    } else if (hashHex.length > 32) {
+                        hashHex = hashHex.slice(-32);
+                    }
+
+                    return hashHex;
                 }
+
+                // 生成确定性填充字符串
+                function generateDeterministicPadding(seed, length) {
+                    const chars = '123456789abcdef';
+                    let padding = '';
+                    let state = seed;
+
+                    for (let i = 0; i < length; i++) {
+                        // 使用简单的伪随机算法，但基于种子确保确定性
+                        state = (state * 1664525 + 1013904223) & 0xFFFFFFFF;
+                        const index = Math.abs(state) % chars.length;
+                        padding += chars[index];
+                    }
+
+                    return padding;
+                }
+
 
                 // 下载数据函数
                 function downloadData() {
@@ -1774,7 +2281,69 @@
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
                     } catch (error) {
-                        alert('导出数据失败: ' + error.message);
+                        console.error('导出数据失败:', error);
+                        alert('导出数据失败！');
+                    }
+                }
+
+                // 复制数据到剪贴板函数
+                function copyDataToClipboard() {
+                    try {
+                        // 收集要导出的数据，只保留date和emoji字段
+                        const sparkData = JSON.parse(localStorage.getItem('sparkData') || '[]');
+                        const filteredSparkData = sparkData.map(item => ({
+                            date: item.date,
+                            emoji: item.emoji
+                        }));
+                        const exportData = {
+                            sparkData: filteredSparkData,
+                            exportDate: new Date().toISOString()
+                        };
+
+                        // 计算哈希值
+                        const dataStr = JSON.stringify(exportData);
+                        const hash = customHash(dataStr);
+
+                        // 添加哈希值到数据
+                        const finalData = {
+                            ...exportData,
+                            hash: hash
+                        };
+
+                        // 转换为字符串
+                        const finalDataStr = JSON.stringify(finalData, null, 2);
+
+                        // 复制到剪贴板
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            // 现代浏览器
+                            navigator.clipboard.writeText(finalDataStr)
+                                .then(() => {
+                                    alert('数据已复制到剪贴板！请在合适的地方保管你的数据');
+                                })
+                                .catch(err => {
+                                    throw new Error('复制失败: ' + err);
+                                });
+                        } else if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+                            // 旧版浏览器
+                            const textarea = document.createElement('textarea');
+                            textarea.textContent = finalDataStr;
+                            textarea.style.position = 'fixed';
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            try {
+                                document.execCommand('copy');
+                                alert('数据已复制到剪贴板！请在合适的地方保管你的数据');
+                            } catch (ex) {
+                                throw new Error('复制失败: ' + ex);
+                            } finally {
+                                document.body.removeChild(textarea);
+                            }
+                        } else {
+                            throw new Error('您的浏览器不支持剪贴板复制功能');
+                        }
+                    } catch (error) {
+                        console.error('复制数据失败:', error);
+                        alert('复制数据失败！');
                     }
                 }
 
@@ -1783,12 +2352,12 @@
                     const input = document.createElement('input');
                     input.type = 'file';
                     input.accept = '.json';
-                    input.onchange = function(e) {
+                    input.onchange = function (e) {
                         const file = e.target.files[0];
                         if (!file) return;
 
                         const reader = new FileReader();
-                        reader.onload = function(event) {
+                        reader.onload = function (event) {
                             try {
                                 const content = event.target.result;
                                 const importedData = JSON.parse(content);
@@ -1805,21 +2374,21 @@
 
                                 // 验证哈希
                                 if (computedHash !== hash) {
-                                    alert('校验失败，请检查文件是否更改或损坏');
+                                    alert('校验失败，请检查数据是否更改或损坏');
                                     return;
                                 }
 
                                 // 获取本地现有数据
                                 const localSparkData = JSON.parse(localStorage.getItem('sparkData') || '[]');
-                                
+
                                 // 创建一个以日期为键的映射，优先保留本地数据
                                 const sparkDataMap = new Map();
-                                
+
                                 // 先添加本地数据
                                 localSparkData.forEach(item => {
                                     sparkDataMap.set(item.date, item);
                                 });
-                                
+
                                 // 再添加导入数据中本地没有的日期，只保留date和emoji字段
                                 importedData.sparkData.forEach(item => {
                                     if (!sparkDataMap.has(item.date)) {
@@ -1830,16 +2399,16 @@
                                         });
                                     }
                                 });
-                                
+
                                 // 转换回数组并保存
                                 const mergedSparkData = Array.from(sparkDataMap.values());
                                 localStorage.setItem('sparkData', JSON.stringify(mergedSparkData));
-                                
+
                                 alert('数据加载成功！');
                                 renderCalendar(currentMonth); // 重新渲染日历
                                 updateSparkStatus(); // 更新火花状态
                             } catch (error) {
-                                alert('校验失败，请检查文件是否更改或损坏');
+                                alert('校验失败，请检查数据是否更改或损坏');
                             }
                         };
                         reader.readAsText(file);
@@ -1939,16 +2508,16 @@
             function highlightTodayPlan() {
                 const dayDiff = getDayDifference();
                 const planItems = document.querySelectorAll('.plan-item');
-                
+
                 // 移除所有计划项的高亮
                 planItems.forEach(item => {
                     item.classList.remove('today-plan-highlight');
                 });
-                
+
                 // 高亮今天的计划
                 if (planItems[dayDiff]) {
                     planItems[dayDiff].classList.add('today-plan-highlight');
-                    
+
                     // 滚动到今天的计划
                     planItems[dayDiff].scrollIntoView({
                         behavior: 'smooth',
@@ -1956,26 +2525,30 @@
                     });
                 }
             }
-            
-            
+
+
             // 关闭弹窗
-            document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('close-modal').classList.add('no-highlight');
+            document.getElementById('close-modal').addEventListener('click', function () {
                 const modal = document.getElementById('all-plans-modal');
                 modal.style.display = 'none';
-                
+
                 // 恢复背景页面滚动
                 document.body.style.overflow = '';
             });
-            
+
             // 点击弹窗外部关闭
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 const modal = document.getElementById('all-plans-modal');
                 if (event.target === modal) {
                     modal.style.display = 'none';
-                    
+
                     // 恢复背景页面滚动
                     document.body.style.overflow = '';
                 }
             });
         });
-    </script></body></html>
+    </script>
+</body>
+
+</html>
