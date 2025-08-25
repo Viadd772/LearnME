@@ -1033,7 +1033,7 @@
             "🌈彩虹火花限量发射🌈",
             "🔥电子火花饲养员🔥",
             "🧘功德+1🧘",
-            "🤖AI检测到：您的坚持已击败99%人类🤖",
+            "🤖AI检测到🤖\n您的坚持已击败99%人类",
             "🚀法修散打！火花连击999🚀",
             "🦥树獭闪电侠模式启动🦥",
             "😋月亮不睡我不睡，我是人间小美味😋",
@@ -1054,8 +1054,8 @@
             "😾哈！😾",
             "🐤叮咚鸡，大狗叫🐤",
             "🤪如何呢，又能怎？🤪",
-            "8️⃣满分10分我给你打8.6分，因为我有1.4了6️⃣",
-            "🍰啊啊啊，宝宝你是一个香香软软的小蛋糕🍰",
+            "8️⃣满分10分我给你打8.6分6️⃣\n因为我有1.4了",
+            "啊啊啊啊啊啊啊啊啊\n🍰宝宝你是一个香香软软的小蛋糕🍰",
             "🐈oiiaiaoiiiai🐈",
             "😥不要…忘记…点…火花…😥",
             "🧠9.9包邮爱因斯坦的大脑🧠",
@@ -1348,6 +1348,9 @@
                     const sparkButton = document.getElementById('spark-button');
                     sparkButton.textContent = todaySpark.message;
                     sparkButton.classList.add('emoji-font');
+                    sparkButton.style.whiteSpace = 'pre-line';
+                    sparkButton.style.textAlign = 'center';
+                    sparkButton.style.padding = '10px';
                 }
             }
         }
