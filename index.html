@@ -1026,7 +1026,7 @@
             "🎆火花人，火花魂🎆",
             "💫宇宙火花收藏家💫",
             "🖍️火花标记今日份闪耀🖍️",
-            "🌋火山喷发式火花迸溅🌋",
+            "🙃满分10分我给你打8.6分🙃\n因为我有1.4了",
             "🧯（假装灭火）火花太旺了🧯",
             "🔮水晶球预判：火花持续燃烧🔮",
             "🎬火花连续剧第N集🎬",
@@ -1054,7 +1054,7 @@
             "😾哈！😾",
             "🐤叮咚鸡，大狗叫🐤",
             "🤪如何呢，又能怎？🤪",
-            "8️⃣满分10分我给你打8.6分6️⃣\n因为我有1.4了",
+            "🌋火山喷发式火花迸溅🌋",
             "啊啊啊啊啊啊啊啊啊\n🍰宝宝你是一个香香软软的小蛋糕🍰",
             "🐈oiiaiaoiiiai🐈",
             "😥不要…忘记…点…火花…😥",
@@ -1164,15 +1164,31 @@
         // 全局基准日期常量
         const BASE_DATE = new Date(2025, 7, 31); // 月份以0起始
 
-        // 基于日期字符串的哈希函数
+        // 基于日期字符串的哈希函数 - 优化版本
         function hashDate(dateStr) {
             let hash = 0;
             if (dateStr.length === 0) return hash;
+            
+            // 使用一组质数作为种子，增加随机性
+            const primes = [31, 37, 41, 43, 47, 53, 59, 61, 67, 71];
+            
             for (let i = 0; i < dateStr.length; i++) {
                 const char = dateStr.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash; // 转换为32位整数
+                // 混合字符值与位置相关的质数
+                const prime = primes[i % primes.length];
+                
+                // 改进的哈希计算方式，增加更多位操作
+                hash = (hash * prime + char) >>> 0; // 无符号右移确保为正数
+                hash = ((hash << 10) | (hash >>> 22)) >>> 0; // 循环位移增加混淆
             }
+            
+            // 额外的混淆步骤
+            hash = (hash ^ (hash >>> 16)) >>> 0;
+            hash = (hash * 0x85ebca6b) >>> 0;
+            hash = (hash ^ (hash >>> 13)) >>> 0;
+            hash = (hash * 0xc2b2ae35) >>> 0;
+            hash = (hash ^ (hash >>> 16)) >>> 0;
+            
             return Math.abs(hash);
         }
 
