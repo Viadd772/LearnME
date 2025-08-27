@@ -1343,6 +1343,18 @@
             const sparkDaysContainer = document.getElementById('spark-days-container');
             const sparkExtinguished = document.getElementById('spark-extinguished');
             const sparkDaysElement = document.getElementById('spark-days');
+            
+            // 检查今天是否已经点燃火花
+            const isTodaySparked = hasSparkedToday();
+            
+            // 检查昨天是否点燃了火花（判断是否是"今天没点火花，昨天点了火花"的情况）
+            const now = new Date();
+            const yesterday = new Date(now);
+            yesterday.setDate(now.getDate() - 1);
+            const yesterdayStr = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`;
+            const sparkData = JSON.parse(localStorage.getItem('sparkData')) || [];
+            const isYesterdaySparked = sparkData.some(item => item.date === yesterdayStr);
+            const isTodayNotSparkedButYesterdaySparked = !isTodaySparked && isYesterdaySparked;
 
             // 根据连续天数显示不同内容
             if (consecutiveDays === 0) {
@@ -1352,6 +1364,29 @@
                 sparkDaysContainer.style.display = 'block';
                 sparkExtinguished.style.display = 'none';
                 sparkDaysElement.textContent = consecutiveDays;
+                
+                // 当今天没点火花，昨天点了火花时，将数字显示为灰色
+                  if (isTodayNotSparkedButYesterdaySparked) {
+                      sparkDaysElement.style.color = '#9e9e9e'; // 灰色
+                       // 移除已存在的等级图标元素
+                      let levelIconsElement = document.getElementById('level-icons');
+                      if (levelIconsElement) {
+                          sparkDaysContainer.removeChild(levelIconsElement);
+                      }
+                  } else {
+                      sparkDaysElement.style.color = '#ff80ab'; // 原来的粉色
+                      
+                      // 只有今天点完火花才显示等级图标
+                      if (isTodaySparked) {
+                          generateLevelIcons(consecutiveDays);
+                      } else {
+                          // 移除已存在的等级图标元素
+                          let levelIconsElement = document.getElementById('level-icons');
+                          if (levelIconsElement) {
+                              sparkDaysContainer.removeChild(levelIconsElement);
+                          }
+                      }
+                  }
             }
 
             // 如果今天已经点燃，更新按钮文本
@@ -1369,6 +1404,49 @@
                     sparkButton.style.padding = '10px';
                 }
             }
+        }
+        
+        // 生成等级图标
+        function generateLevelIcons(days) {
+            const sparkDaysContainer = document.getElementById('spark-days-container');
+            
+            // 移除已存在的等级图标元素
+            let levelIconsElement = document.getElementById('level-icons');
+            if (levelIconsElement) {
+                sparkDaysContainer.removeChild(levelIconsElement);
+            }
+
+            // 创建新的等级图标元素
+            levelIconsElement = document.createElement('div');
+            levelIconsElement.id = 'level-icons';
+            levelIconsElement.classList.add('emoji-font');
+            levelIconsElement.style.marginTop = '0px';
+            levelIconsElement.style.fontSize = '14px';
+            levelIconsElement.style.textAlign = 'center';
+
+            // 等级图标定义
+            const levelIcons = [
+                { threshold: 625, icon: '👑' },
+                { threshold: 125, icon: '🌞' },
+                { threshold: 25, icon: '🌋' },
+                { threshold: 5, icon: '💥' },
+                { threshold: 1, icon: '🔥' }
+            ];
+
+            let remainingDays = days;
+            let icons = '';
+
+            // 从大到小分解天数生成图标
+            for (const level of levelIcons) {
+                if (remainingDays >= level.threshold) {
+                    const count = Math.floor(remainingDays / level.threshold);
+                    icons += level.icon.repeat(count);
+                    remainingDays %= level.threshold;
+                }
+            }
+
+            levelIconsElement.textContent = icons;
+            sparkDaysContainer.appendChild(levelIconsElement);
         }
 
         // 计算离下次报告的天数（下一个周六）
