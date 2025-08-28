@@ -1700,21 +1700,54 @@
             }
         }
 
-        // 检查是否需要强制刷新页面
-        function checkForceRefresh() {
-            const now = new Date();
-            const todayStr = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-            const lastVisitDate = localStorage.getItem('lastVisitDate') || '';
-            const lastRefreshTime = localStorage.getItem('lastRefreshTime') || 0;
-            const nowTime = now.getTime();
+        // 实现页面重新初始化功能，删除所有组件并重新加载
+        function reinitializePage() {
+            try {
+                // console.log('重新初始化...');
+                // 保存必要的数据（如滚动位置）
+                const scrollPosition = window.scrollY;
+                
+                // 清空原有的页面内容，确保完全重新初始化
+                // 1. 清空今日学习板块
+                const studyTitle = document.getElementById('study-title');
+                const studyTime = document.getElementById('study-time');
+                const weekPlanContent = document.getElementById('week-plan-content');
+                const allPlansList = document.getElementById('all-plans-list');
+                if (allPlansList) allPlansList.innerHTML = '';
+                if (studyTitle) studyTitle.textContent = '';
+                if (studyTime) studyTime.textContent = '';
+                if (weekPlanContent) weekPlanContent.innerHTML = '';
+                
+                // 2. 清空单词板块
+                const vocabTitle = document.getElementById('vocab-title');
+                const dateCircles = document.getElementById('date-circles');
+                if (vocabTitle) vocabTitle.textContent = '';
+                if (dateCircles) dateCircles.innerHTML = '';
+                
+                // 3. 清空LearnME板块
+                const encourageMessage = document.getElementById('encourage-message');
+                const sparkDaysContainer = document.getElementById('spark-days-container');
+                const sparkExtinguished = document.getElementById('spark-extinguished');
+                const nextReport = document.getElementById('next-report');
+                const persistDays = document.getElementById('persist-days');
+                const progressFill = document.querySelector('.progress-fill');
+                const progressText = document.getElementById('progress-text');
+                if (encourageMessage) encourageMessage.textContent = '';
+                if (sparkDaysContainer) sparkDaysContainer.style.display = 'none';
+                if (sparkExtinguished) sparkExtinguished.style.display = 'none';
+                if (nextReport) nextReport.innerHTML = '';
+                if (persistDays) persistDays.textContent = '';
+                if (progressFill) progressFill.style.width = '0%';
+                if (progressText) progressText.textContent = '0.00%';
 
-            // 如果上次访问日期不存在、与今天不同，或者已经过了5分钟，则强制刷新
-            if (!lastVisitDate || lastVisitDate !== todayStr || (nowTime - lastRefreshTime) > 300000) {
-                // 存储今天的日期和刷新时间
-                localStorage.setItem('lastVisitDate', todayStr);
-                localStorage.setItem('lastRefreshTime', nowTime.toString());
-                // 强制刷新页面
-                location.reload();
+                // 重新初始化所有组件
+                initPage();
+                initVocabSection();
+                initLearnME();
+                // 恢复滚动位置
+                window.scrollTo(0, scrollPosition);
+            } catch (error) {
+                console.error('页面重新初始化失败:', error);
             }
         }
 
@@ -1722,22 +1755,22 @@
         function setupVisibilityListener() {
             document.addEventListener('visibilitychange', function() {
                 if (document.visibilityState === 'visible') {
-                    checkForceRefresh();
+                    // 直接重新初始化页面
+                    reinitializePage();
                 }
             });
         }
 
         // 事件监听
         document.addEventListener('DOMContentLoaded', function () {
-            // 首先检查是否需要强制刷新
-            checkForceRefresh();
             // 设置页面可见性变化监听
             setupVisibilityListener();
 
+            // 初始化页面组件
             initPage();
             initVocabSection();
             initLearnME();
-
+            
             // 计划预览按钮
             document.getElementById('toggle-preview').addEventListener('click', function () {
                 const weekPlan = document.getElementById('week-plan');
