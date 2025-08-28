@@ -1713,14 +1713,23 @@
                 const studyTime = document.getElementById('study-time');
                 const weekPlanContent = document.getElementById('week-plan-content');
                 const allPlansList = document.getElementById('all-plans-list');
+                const currentDate = document.getElementById('current-date');
+                const togglePreview = document.getElementById('toggle-preview');
+                const weekPlan = document.getElementById('week-plan');
+                
                 if (allPlansList) allPlansList.innerHTML = '';
                 if (studyTitle) studyTitle.textContent = '';
                 if (studyTime) studyTime.textContent = '';
                 if (weekPlanContent) weekPlanContent.innerHTML = '';
+                if (currentDate) currentDate.textContent = '';
+                if (togglePreview) togglePreview.textContent = '计划预览';
+                if (weekPlan) weekPlan.classList.remove('active');
                 
                 // 2. 清空单词板块
                 const vocabTitle = document.getElementById('vocab-title');
                 const dateCircles = document.getElementById('date-circles');
+                const vocabHeader = document.getElementById('vocab-header');
+                
                 if (vocabTitle) vocabTitle.textContent = '';
                 if (dateCircles) dateCircles.innerHTML = '';
                 
@@ -1732,6 +1741,9 @@
                 const persistDays = document.getElementById('persist-days');
                 const progressFill = document.querySelector('.progress-fill');
                 const progressText = document.getElementById('progress-text');
+                const sparkDays = document.getElementById('spark-days');
+                const sparkStatusContainer = document.getElementById('spark-status-container');
+                
                 if (encourageMessage) encourageMessage.textContent = '';
                 if (sparkDaysContainer) sparkDaysContainer.style.display = 'none';
                 if (sparkExtinguished) sparkExtinguished.style.display = 'none';
@@ -1739,6 +1751,29 @@
                 if (persistDays) persistDays.textContent = '';
                 if (progressFill) progressFill.style.width = '0%';
                 if (progressText) progressText.textContent = '0.00%';
+                if (sparkDays) sparkDays.textContent = '0';
+                if (sparkDays) sparkDays.style.color = '#ff80ab';
+                
+                // 4. 清空火花按钮
+                const sparkButton = document.getElementById('spark-button');
+                if (sparkButton) {
+                    sparkButton.textContent = '点燃火花';
+                    sparkButton.classList.remove('emoji-font');
+                    sparkButton.style.whiteSpace = '';
+                    sparkButton.style.textAlign = '';
+                    sparkButton.style.padding = '';
+                }
+                
+                // 5. 移除等级图标元素（如果存在）
+                const levelIconsElement = document.getElementById('level-icons');
+                if (levelIconsElement && sparkDaysContainer) {
+                    sparkDaysContainer.removeChild(levelIconsElement);
+                }
+                
+                // 6. 重置弹窗相关元素
+                const allPlansModal = document.getElementById('all-plans-modal');
+                if (allPlansModal) allPlansModal.style.display = 'none';
+                document.body.style.overflow = ''; // 确保背景滚动始终可用
 
                 // 重新初始化所有组件
                 initPage();
