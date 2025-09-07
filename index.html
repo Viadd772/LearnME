@@ -1460,19 +1460,19 @@
             sparkDaysContainer.appendChild(levelIconsElement);
         }
 
-        // 计算离下次报告的天数（下一个周六）
+        // 计算离下次报告的天数（下一个周日）
         function getDaysUntilNextReport() {
             const now = new Date();
             const currentDay = now.getDay(); // 0是周日，6是周六
-            let daysUntilSaturday;
+            let daysUntilSunday;
 
-            if (currentDay === 6) {
-                // 今天是周六
+            if (currentDay === 0) {
+                // 今天是周日
                 return 0;
             } else {
-                // 计算到下周六的天数
-                daysUntilSaturday = 6 - currentDay;
-                return daysUntilSaturday;
+                // 计算到下周天的天数
+                daysUntilSunday = 7 - currentDay;
+                return daysUntilSunday;
             }
         }
 
@@ -1577,15 +1577,21 @@
             const currentDay = now.getDay(); // 0是周日，1是周一，以此类推
             const dayDiff = getDayDifference();
 
-            // 计算本周周日的索引
-            const sundayIndex = dayDiff - currentDay;
+            // 计算本周周一的索引（将周日视为上周的最后一天）
+            let mondayIndex;
+            if (currentDay === 0) { // 周日
+                mondayIndex = dayDiff - 6; // 上周的周一
+            } else {
+                mondayIndex = dayDiff - (currentDay - 1); // 本周的周一
+            }
 
             const weekPlans = [];
             for (let i = 0; i < 7; i++) {
-                const planIndex = (sundayIndex + i) % studyPlans.length;
+                const planIndex = (mondayIndex + i) % studyPlans.length;
                 const adjustedIndex = planIndex >= 0 ? planIndex : (studyPlans.length + planIndex) % studyPlans.length;
+                
                 weekPlans.push({
-                    day: i,
+                    day: i, // 0-6分别表示周一到周日
                     plan: studyPlans[adjustedIndex]
                 });
             }
@@ -1605,21 +1611,23 @@
 
             // 设置本周计划
             const weekPlans = getWeekStudyPlans();
-            const weekdayNames = ['&nbsp;周日', '&nbsp;周一', '&nbsp;周二', '&nbsp;周三', '&nbsp;周四', '&nbsp;周五', '&nbsp;周六'];
+            const weekdayNames = ['&nbsp;周一', '&nbsp;周二', '&nbsp;周三', '&nbsp;周四', '&nbsp;周五', '&nbsp;周六', '&nbsp;周日'];
 
             const weekPlanContent = document.getElementById('week-plan-content');
+            const today = new Date().getDay();
 
             weekPlans.forEach((item, index) => {
                 const dayItem = document.createElement('div');
                 dayItem.className = 'day-item';
 
                 // 为今天添加高亮类
-                if (index === new Date().getDay()) {
+                const currentDay = today === 0 ? 6 : (today - 1); // 转换周日为索引6
+                if (index === currentDay) {
                     dayItem.className += ' today-highlight';
                 }
 
                 // 统一所有日期的HTML结构
-                const dayName = index === new Date().getDay() ? '&nbsp;今天' : weekdayNames[index];
+                const dayName = index === currentDay ? '&nbsp;今天' : weekdayNames[index];
                 dayItem.innerHTML = `<div class="day-name">${dayName}</div>`;
 
                 dayItem.innerHTML += `
