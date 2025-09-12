@@ -1071,7 +1071,7 @@
             "🌹送你999朵玫瑰🌹",
             "🐆知识学爆🐆",
             "🧀完蛋！我被知识包围了！🧀",
-            "☀接下来，要开始放晴了哦☀",
+            "☀️接下来，要开始放晴了哦☀️",
             "☀️积极人生☀️",
             "🐶我就在那装蒜🐶",
             "🙀时代少年团结婚了你们怕不怕🙀",
@@ -2335,21 +2335,30 @@
                     // 获取本地现有数据
                     const localSparkData = JSON.parse(localStorage.getItem('sparkData') || '[]');
 
-                    // 创建一个以日期为键的映射，优先保留本地数据
+                    // 创建一个以日期为键的映射，保留本地的message字段
                     const sparkDataMap = new Map();
 
-                    // 先添加本地数据
+                    // 先添加本地数据到映射中
                     localSparkData.forEach(item => {
                         sparkDataMap.set(item.date, item);
                     });
 
-                    // 再添加导入数据中本地没有的日期，只保留date和emoji字段
+                    // 再添加导入数据，但保留本地的message字段
                     importedData.sparkData.forEach(item => {
-                        if (!sparkDataMap.has(item.date)) {
+                        const existingData = sparkDataMap.get(item.date);
+                        if (existingData) {
+                            // 如果日期已存在，只更新emoji，保留本地的message
                             sparkDataMap.set(item.date, {
                                 date: item.date,
                                 emoji: item.emoji || '🔥', // 如果没有emoji，使用默认值
-                                message: '' // 保留空message字段以避免可能的错误
+                                message: existingData.message // 保留本地的message字段
+                            });
+                        } else {
+                            // 如果日期不存在，添加完整记录
+                            sparkDataMap.set(item.date, {
+                                date: item.date,
+                                emoji: item.emoji || '🔥',
+                                message: ''
                             });
                         }
                     });
@@ -2565,21 +2574,30 @@
                                 // 获取本地现有数据
                                 const localSparkData = JSON.parse(localStorage.getItem('sparkData') || '[]');
 
-                                // 创建一个以日期为键的映射，优先保留本地数据
+                                // 创建一个以日期为键的映射，保留本地的message字段
                                 const sparkDataMap = new Map();
 
-                                // 先添加本地数据
+                                // 先添加本地数据到映射中
                                 localSparkData.forEach(item => {
                                     sparkDataMap.set(item.date, item);
                                 });
 
-                                // 再添加导入数据中本地没有的日期，只保留date和emoji字段
+                                // 再添加导入数据，但保留本地的message字段
                                 importedData.sparkData.forEach(item => {
-                                    if (!sparkDataMap.has(item.date)) {
+                                    const existingData = sparkDataMap.get(item.date);
+                                    if (existingData) {
+                                        // 如果日期已存在，只更新emoji，保留本地的message
                                         sparkDataMap.set(item.date, {
                                             date: item.date,
                                             emoji: item.emoji || '🔥', // 如果没有emoji，使用默认值
-                                            message: '' // 保留空message字段以避免可能的错误
+                                            message: existingData.message // 保留本地的message字段
+                                        });
+                                    } else {
+                                        // 如果日期不存在，添加完整记录
+                                        sparkDataMap.set(item.date, {
+                                            date: item.date,
+                                            emoji: item.emoji || '🔥',
+                                            message: ''
                                         });
                                     }
                                 });
